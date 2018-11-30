@@ -1,6 +1,7 @@
 {
   "name": "youtube-gallery",
   "version": "0.1.0",
+  "author": {"name": "Shanmuga S Muthu"},
   "private": true,
   "dependencies": {
     "react": "^16.6.3",
