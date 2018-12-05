@@ -1,0 +1,40 @@
+.App-Title {
+    float: left;
+    position: absolute;
+    margin-right:100px !important; 
+    font-style: inherit;
+    font-weight:300;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.icon-small {
+    color: #776699;
+    border-radius: 10%;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 12px;
+  
+  }
+  .icon-small{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+  }
+  .details{
+    padding:0 1em;
+  }
+  .icon-small + p {
+      margin-top: 15px;
+  }
+  
+  .icon-small h4 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+  }
+  
+  .icon-small h5 {
+      font-size: 14px;
+      font-weight: normal;
+      color: #00BDBD;
+  }

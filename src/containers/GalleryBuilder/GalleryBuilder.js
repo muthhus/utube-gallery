@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Aux from '../../hoc/Aux';
 import Gallery from '../../components/Gallery/Gallery';
@@ -6,63 +7,44 @@ import Gallery from '../../components/Gallery/Gallery';
 class GalleryBuilder extends Component {
 
     state = {
-
-        galleries: [
-          {title: "2.0", description: "This movie is directed by Shankar and Acted by Superstar Rajini", rating: 4},
-          {title: "Kana", description: "The movie about Ladies crickets" , rating: 2 },
-          {title: "Sarkar", description: "This movie about public elections and running task", rating: 4.5 },
-          {title: "Vishwasham", description: "Teh Family Entainer", rating: 4.5 },
-          {title: "Veera Pandiya Kattabomman", description: "Nellai Vendhar Veera Pandiya Kattabomman", rating: 5 }
-        ],
-        showGalleries: true
-      }
-    
-      galleryDetails = ( galleryIndex) => {
-        const currentGallery = {
-          ...this.state.galleries[galleryIndex]
-        };
-        
-        console.log("currentGallery >>>" + currentGallery.title);
-      }
-    
-      customerReview = (event, index) => {
-        const currentGallery = {
-          ...this.state.galleries[index]
-        };
-    
-        currentGallery.rating = event.target.value;
-    
-        const galleries = [...this.state.galleries];
-        galleries[index] = currentGallery;
-    
-        this.setState( {galleries : galleries} );
-    
+        uTubeGalleries: [],
+        selectedGalleryId: null
       }
 
-      render() {
-        let galleries = null;
+      componentDidMount(){
+          axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then( response => {
+                const uTubeGalleries = response.data.slice(0, 10);
+                const updateduTubeGalleries = uTubeGalleries.map(uTubeGallery => {
+                    return {
+                        ...uTubeGallery,
+                        author: "Shanmuga S Muthu"
+                    }
+                });
+                this.setState({uTubeGalleries: updateduTubeGalleries})
+            });
+      }
 
-        if ( this.state.showGalleries ) {
-          galleries = (
-            <div>
-              {this.state.galleries.map((gallery, index) => {
-                return <Gallery 
-                getTitle={() => this.galleryDetails(index)}
-                title = {gallery.title}
-                description = {gallery.description}
-                rating = {gallery.rating}
-                key = {index} 
-                review = { (event) => this.customerReview(event, index) }
-                />
-              })}
-            </div>
-          );
-        }
+
+      gallerySelectedHandler = (id) => {
+        this.setState({selectedGalleryId: id});
+    }
+
+      render() {        
+        const uTubeGalleries = this.state.uTubeGalleries.map((gallery, index) => {
+            return <Gallery 
+                title={gallery.title}
+                description={gallery.body}
+                rating={gallery.id}
+                key={gallery.index}
+                clicked={() => this.gallerySelectedHandler(gallery.id)} />;
+        });
     
           return (
             <Aux>
-                {galleries}
-                <div>Gallery Browser</div>
+                <section>
+                    {uTubeGalleries}
+                </section>
             </Aux>
           );
       }

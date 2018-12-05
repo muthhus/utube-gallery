@@ -7,10 +7,11 @@ const gallery = (props) => {
     return (
         <Aux>
             <div className="Gallery">
-                <p onClick={props.getTitle}>Title: {props.title}</p>
+                <p onClick={props.clicked}>Title: {props.title}</p>
                 <p>Description: {props.description}</p>
                 <p>{props.children}</p>
-                <p>Rating: {props.rating} <input type="text" onChange={props.review} value={props.rating} /></p>
+                <p>Rating: {props.rating}</p>
+                <hr/>
             </div>
         </Aux>
         

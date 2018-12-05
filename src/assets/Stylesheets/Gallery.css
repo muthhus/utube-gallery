@@ -1,0 +1,14 @@
+.AppHeader {
+    font-family: serif;
+    font-weight: 300;
+}
+
+.Logo {
+    margin:0px;
+    max-width:40px;
+    max-height:40px;
+}
+
+.AppTitle {
+ font-style:italic;
+}
